@@ -3,7 +3,7 @@ from bank import Bank  # import your Bank class
 
 # Streamlit Banking App
 st.set_page_config(page_title="Banking System", layout="centered")
-st.title("🏦 Banking System with Streamlit")
+st.title("Banking System with Streamlit")
 
 # Instantiate
 user = Bank()
@@ -13,7 +13,7 @@ menu = ["Create Account", "Deposit Money", "Withdraw Money",
 choice = st.sidebar.selectbox("Select Action", menu)
 
 if choice == "Create Account":
-    st.subheader("📝 Create a New Account")
+    st.subheader("Create a New Account")
     name = st.text_input("Name")
     age = st.number_input("Age", min_value=1, step=1)
     gender = st.selectbox("Gender", ["Male", "Female", "Other"])
@@ -39,11 +39,11 @@ if choice == "Create Account":
             }
             Bank.data.append(info)
             Bank._Bank__update()
-            st.success("✅ Account created successfully!")
+            st.success("Account created successfully!")
             st.json(info)
 
 elif choice == "Deposit Money":
-    st.subheader("💰 Deposit Money")
+    st.subheader("Deposit Money")
     accNo = st.text_input("Account Number")
     pin = st.text_input("PIN", type="password")
     amount = st.number_input("Deposit Amount (₹)", min_value=1, step=1)
@@ -53,14 +53,14 @@ elif choice == "Deposit Money":
         if not userdata:
             st.error("Sorry, no account found.")
         elif amount > 10000:
-            st.error("❌ Deposit limit exceeded (Max ₹10,000).")
+            st.error("Deposit limit exceeded (Max ₹10,000).")
         else:
             userdata[0]['balance'] += amount
             Bank._Bank__update()
-            st.success(f"✅ Deposit successful! Current balance: ₹{userdata[0]['balance']}")
+            st.success(f"Deposit successful! Current balance: ₹{userdata[0]['balance']}")
 
 elif choice == "Withdraw Money":
-    st.subheader("💳 Withdraw Money")
+    st.subheader("Withdraw Money")
     accNo = st.text_input("Account Number")
     pin = st.text_input("PIN", type="password")
     amount = st.number_input("Withdraw Amount (₹)", min_value=1, step=1)
@@ -70,11 +70,11 @@ elif choice == "Withdraw Money":
         if not userdata:
             st.error("Sorry, no account found.")
         elif amount > userdata[0]['balance']:
-            st.error("❌ Invalid amount or insufficient balance.")
+            st.error("Invalid amount or insufficient balance.")
         else:
             userdata[0]['balance'] -= amount
             Bank._Bank__update()
-            st.success(f"✅ Withdrawal successful! Current balance: ₹{userdata[0]['balance']}")
+            st.success(f" Withdrawal successful! Current balance: ₹{userdata[0]['balance']}")
 
 elif choice == "Fetch Holder Details":
     st.subheader("📋 Account Details")
@@ -89,7 +89,7 @@ elif choice == "Fetch Holder Details":
             st.json(userdata[0])
 
 elif choice == "Update Details":
-    st.subheader("✏️ Update Details")
+    st.subheader(" Update Details")
     accNo = st.text_input("Account Number")
     pin = st.text_input("PIN", type="password")
 
@@ -113,10 +113,10 @@ elif choice == "Update Details":
                 if new_pin.isdigit() and len(new_pin) == 4:
                     account['pin'] = int(new_pin)
                 Bank._Bank__update()
-                st.success("✅ Details updated successfully!")
+                st.success("Details updated successfully!")
 
 elif choice == "Delete Account":
-    st.subheader("❌ Delete Account")
+    st.subheader("Delete Account")
     accNo = st.text_input("Account Number")
     pin = st.text_input("PIN", type="password")
 
@@ -127,4 +127,4 @@ elif choice == "Delete Account":
         else:
             Bank.data.remove(userdata[0])
             Bank._Bank__update()
-            st.success("✅ Account deleted successfully.")
+            st.success("Account deleted successfully.")
