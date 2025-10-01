@@ -60,7 +60,7 @@ class Bank:
             Bank.data.append(info)
             Bank.__update()
 
-            print("\n✅ Account created successfully!")
+            print("\nAccount created successfully!")
             for k, v in info.items():
                 print(f"{k}: {v}")
             print("Note: Recheck your details. Report any incorrect data to the Branch Manager.")
@@ -91,12 +91,12 @@ class Bank:
                 print("Invalid amount.")
                 return
             if amount > 10000:
-                print("❌ Deposit limit exceeded (Max ₹10,000).")
+                print("Deposit limit exceeded (Max ₹10,000).")
                 return
 
             userdata[0]['balance'] += amount
             Bank.__update()
-            print(f"✅ Deposit successful! Current balance: ₹{userdata[0]['balance']}")
+            print(f"Deposit successful! Current balance: ₹{userdata[0]['balance']}")
         except:
             print("Invalid input.")
 
@@ -116,12 +116,12 @@ class Bank:
         try:
             amount = int(input("Enter withdrawal amount in INR: "))
             if amount <= 0 or amount > userdata[0]['balance']:
-                print("❌ Invalid amount or insufficient balance.")
+                print(" Invalid amount or insufficient balance.")
                 return
 
             userdata[0]['balance'] -= amount
             Bank.__update()
-            print(f"✅ Withdrawal successful! Current balance: ₹{userdata[0]['balance']}")
+            print(f"Withdrawal successful! Current balance: ₹{userdata[0]['balance']}")
         except:
             print("Invalid input.")
 
@@ -174,7 +174,7 @@ class Bank:
         Bank.data[index] = newdata
         Bank.__update()
 
-        print("✅ Details updated successfully.")
+        print("Details updated successfully.")
 
     def Delete(self):
         accNo = input("Enter your account number: ")
@@ -191,12 +191,12 @@ class Bank:
 
         check = input("Are you sure you want to delete your account? (y/n): ")
         if check.lower() != 'y':
-            print("❌ Account deletion cancelled.")
+            print("Account deletion cancelled.")
             return
 
         Bank.data.remove(userdata[0])
         Bank.__update()
-        print("✅ Account deleted successfully.")
+        print("Account deleted successfully.")
 
 
 def main():
@@ -232,7 +232,7 @@ def main():
         elif choice == 6:
             user.Delete()
         elif choice == 7:
-            print("👋 Exiting... Thank you for using our banking system.")
+            print("Exiting... Thank you for using our banking system.")
             break
         else:
             print("Invalid choice, try again.")
